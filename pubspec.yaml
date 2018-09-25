@@ -1,0 +1,14 @@
+name: hnpwa_client
+description: Fetch data from the HNPWA API -- a Hacker News API crafted for mobile and progressive web apps
+version: 1.0.0
+homepage: https://github.com/brianegan/hnpwa_client
+author: Brian Egan <brian@brianegan.com>
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  http: ^0.11.3+17
+
+dev_dependencies:
+  test: ^1.3.0

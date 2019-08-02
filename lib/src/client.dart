@@ -18,7 +18,7 @@ class HnpwaClient {
     final response = await client.get(_buildUrl('item/$id.json'));
 
     if (response.statusCode == 200) {
-      return Item.fromJson(json.decode(response.body));
+      return Item.fromJson(_decodeResponse(response));
     } else {
       throw Exception(
         '${response.statusCode} Error Fetching HNPWA Results: ${response.body}',
@@ -30,7 +30,7 @@ class HnpwaClient {
     final response = await client.get(_buildUrl('user/$id.json'));
 
     if (response.statusCode == 200) {
-      return User.fromJson(json.decode(response.body));
+      return User.fromJson(_decodeResponse(response));
     } else {
       throw Exception(
         '${response.statusCode} Error Fetching HNPWA Results: ${response.body}',
@@ -97,8 +97,7 @@ class HnpwaClient {
 
     if (response.statusCode == 200) {
       return Feed.from(
-        items:
-            (json.decode(response.body) as List).cast<Map<String, dynamic>>(),
+        items: (_decodeResponse(response) as List).cast<Map<String, dynamic>>(),
         currentPage: currentPage,
         nextPage: currentPage < maxPages ? currentPage + 1 : null,
       );
@@ -108,4 +107,7 @@ class HnpwaClient {
       );
     }
   }
+
+  _decodeResponse(Response response) =>
+      json.decode(utf8.decode(response.bodyBytes));
 }

@@ -2,7 +2,7 @@ language: dart
 # Speed up builds by using containerization.
 sudo: false
 dart:
-- stable
+- 2.2.0
 with_content_shell: false
 dart_task:
 - dartanalyzer: --fatal-infos --fatal-warnings ./
@@ -13,6 +13,6 @@ script:
   - pub global activate coverage
   - pub global run coverage:collect_coverage --port=8111 -o coverage.json --resume-isolates --wait-paused &
   - dart --observe=8111 test/hnpwa_client_test.dart
-  - pub global run coverage:format_coverage --report-on lib --in coverage.json --out lcov.info --lcov
+  - nohup pub global run coverage:format_coverage --report-on lib --in coverage.json --out lcov.info --lcov
 after_success:
   - bash <(curl -s https://codecov.io/bash)

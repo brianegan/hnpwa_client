@@ -1,3 +1,5 @@
+import 'package:hnpwa_client/src/models/item_type.dart';
+
 class FeedItem {
   final int id;
   final String title;
@@ -6,7 +8,7 @@ class FeedItem {
   final int time;
   final String timeAgo;
   final int commentsCount;
-  final String type;
+  final ItemType type;
   final String url;
   final String domain;
 
@@ -31,25 +33,9 @@ class FeedItem {
         time = json['time'],
         timeAgo = json['time_ago'],
         commentsCount = json['comments_count'],
-        type = json['type'],
+        type = itemTypeFromJson(json['type']),
         url = json['url'],
         domain = json['domain'];
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data['id'] = id;
-    data['title'] = title;
-    data['points'] = points;
-    data['user'] = user;
-    data['time'] = time;
-    data['time_ago'] = timeAgo;
-    data['comments_count'] = commentsCount;
-    data['type'] = type;
-    data['url'] = url;
-    data['domain'] = domain;
-    return data;
-  }
 
   @override
   String toString() {

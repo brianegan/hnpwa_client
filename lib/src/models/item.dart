@@ -1,3 +1,5 @@
+import 'package:hnpwa_client/src/models/item_type.dart';
+
 class Item {
   final int id;
   final String title;
@@ -5,7 +7,7 @@ class Item {
   final String user;
   final int time;
   final String timeAgo;
-  final String type;
+  final ItemType type;
   final String content;
   final List<Item> comments;
   final int commentsCount;
@@ -43,32 +45,13 @@ class Item {
       user: json['user'],
       time: json['time'],
       timeAgo: json['time_ago'],
-      type: json['type'],
+      type: itemTypeFromJson(json['type']),
       content: json['content'],
       comments: comments,
       commentsCount: json['comments_count'],
       url: json['url'],
       domain: json['domain'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['points'] = this.points;
-    data['user'] = this.user;
-    data['time'] = this.time;
-    data['time_ago'] = this.timeAgo;
-    data['type'] = this.type;
-    data['content'] = this.content;
-    if (this.comments != null) {
-      data['comments'] = this.comments.map((v) => v.toJson()).toList();
-    }
-    data['comments_count'] = this.commentsCount;
-    data['url'] = this.url;
-    data['domain'] = this.domain;
-    return data;
   }
 
   @override

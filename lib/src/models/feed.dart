@@ -22,14 +22,6 @@ class Feed {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.items != null) {
-      data['feedItem'] = this.items.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-
   @override
   String toString() {
     return 'Feed{items: $items, currentPage: $currentPage, nextPage: $nextPage}';

@@ -14,16 +14,6 @@ class User {
         id = json['id'],
         karma = json['karma'];
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['about'] = this.about;
-    data['created_time'] = this.createdTime;
-    data['created'] = this.created;
-    data['id'] = this.id;
-    data['karma'] = this.karma;
-    return data;
-  }
-
   @override
   String toString() {
     return 'User{about: $about, createdTime: $createdTime, created: $created, id: $id, karma: $karma}';
